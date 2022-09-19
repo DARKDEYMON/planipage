@@ -1,0 +1,18 @@
+{% extends "base/base_form.html" %}
+{% load crispy_forms_tags %}
+	{% block name %}
+		<h2 class="text-center">Crear Tipo</h2>
+	{% endblock name %}
+	{% block bodyform %}
+
+		<form action="" method="post" class="form">
+			{% csrf_token %}
+			{{ form|crispy }}
+			
+			<div class="d-flex justify-content-center">
+		    	<button type="submit" class="btn btn-primary">Enviar</button>
+			</div>
+			
+		</form>
+		
+	{% endblock bodyform %}

@@ -1,0 +1,49 @@
+{% extends "base/center_body.html" %}
+	{% block contend %}
+		<div class="card">
+			<div class="card-header">
+				{% block name %}
+					
+				{% endblock name %}
+			</div>
+			<div class="card-body">
+				{% block bodylist %}
+					
+				{% endblock bodylist %}
+			
+				{% if is_paginated %}
+					<div class="d-flex justify-content-center">
+						<ul class="pagination">
+							{% if page_obj.has_previous %}
+							    <li class="page-item">
+									<a class="page-link" href="?page={{ page_obj.previous_page_number }}
+									{% if request.GET %}
+										{% for key, value in request.GET.items %}
+											{% if key != 'page' %}
+												&{{key}}={{value}}
+											{% endif %}
+										{% endfor %}
+									{% endif %}">Anterior</a>
+								</li>
+							{% endif %}
+							    <li  class="page-item disabled">
+							        <a class="page-link " href="#">{{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</a>
+							    </li>
+							{% if page_obj.has_next %}
+							    <li class="page-item">
+									<a class="page-link" href="?page={{ page_obj.next_page_number }}
+									{% if request.GET %}
+										{% for key, value in request.GET.items %}
+											{% if key != 'page' %}
+												&{{key}}={{value}}
+											{% endif %}
+										{% endfor %}
+									{% endif %}">Siguiente</a>
+							    </li>
+							{% endif %}
+						</ul>
+					</div>
+				{% endif %}
+			</div>
+		</div>	
+	{% endblock contend %}

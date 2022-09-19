@@ -1,0 +1,70 @@
+{% extends "base/base_main.html" %}
+{% load static %}
+	{% block body %}
+		<div class="contenedor-master">
+			<div class="row gx-0">
+				<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+					<div class="carousel-indicators">
+						{% for p in publicaciones|slice:":3" %}
+							<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="true" aria-label="Slide {{ forloop.counter }}"></button>
+						{% endfor %}
+					</div>
+					<div class="carousel-inner">
+						{% for p in publicaciones|slice:":3" %}
+							<div class="carousel-item {% if forloop.first %}active{% endif %}">
+								<img src="{{p.archivo_set.all.0.archivo.url}}" class="d-block d-img" alt="...">
+								<div class="carousel-caption d-md-block">
+									<h4 class="link">
+										<a href="{% url 'noticias:publicacion' p.pk %}">{{ p.nombre }}</a>
+									</h5>
+									{% if p.resumen %}
+										<p>{{p.resumen}}</p>
+									{% endif %}
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+			</div>
+			<div class="row gx-0">
+				<div class="cajon">
+					{% for p in publicaciones %}
+						<div class="articulos arti-estilo not-cart mini-art">
+							<h3>
+								<time>{{ p.creado }}</time>
+								<a href="{% url 'noticias:publicacion' p.pk %}">{{ p.nombre }}</a>
+								<div>
+									{% for tipo in p.tipo.all %}
+										<span class="badge bg-primary" style="font-size: 0.5rem;">{{ tipo.tipo }}</span>
+									{% endfor %}
+								</div>
+							</h3>
+							<br>
+							<h4>
+								<blockquote class="resaltado">{{p.resumen}}</blockquote>
+							</h4>
+						</div>
+					{% endfor %}
+					<div id="basic-waypoint"></div>
+				</div>
+			</div>
+		</div>
+	{% endblock body %}
+	{% block script %}
+		<script type="text/javascript" async>
+			var waypoint = new Waypoint({
+				element: document.getElementById('basic-waypoint'),
+				handler: function(direction) {
+					console.log('Basic waypoint triggered');
+				}
+			});
+		</script>
+	{% endblock script %}
