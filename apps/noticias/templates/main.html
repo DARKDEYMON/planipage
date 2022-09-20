@@ -15,10 +15,10 @@
 								<img src="{{p.archivo_set.all.0.archivo.url}}" class="d-block d-img" alt="...">
 								<div class="carousel-caption d-md-block">
 									<h4 class="link">
-										<a href="{% url 'noticias:publicacion' p.pk %}">{{ p.nombre }}</a>
+										<a class="text-shadow" href="{% url 'noticias:publicacion' p.pk %}">{{ p.nombre }}</a>
 									</h5>
 									{% if p.resumen %}
-										<p>{{p.resumen}}</p>
+										<p class="text-shadow">{{p.resumen}}</p>
 									{% endif %}
 								</div>
 							</div>
@@ -40,7 +40,7 @@
 						<div class="articulos arti-estilo not-cart mini-art">
 							<h3>
 								<time>{{ p.creado }}</time>
-								<a href="{% url 'noticias:publicacion' p.pk %}">{{ p.nombre }}</a>
+								<a class="text-noticias-titulo" href="{% url 'noticias:publicacion' p.pk %}">{{ p.nombre }}</a>
 								<div>
 									{% for tipo in p.tipo.all %}
 										<span class="badge bg-primary" style="font-size: 0.5rem;">{{ tipo.tipo }}</span>
@@ -49,7 +49,7 @@
 							</h3>
 							<br>
 							<h4>
-								<blockquote class="resaltado">{{p.resumen}}</blockquote>
+								<blockquote class="resaltado text-noticias">{{p.resumen}}</blockquote>
 							</h4>
 						</div>
 					{% endfor %}

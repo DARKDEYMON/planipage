@@ -36,3 +36,8 @@ class TipoForm(forms.ModelForm):
 	class Meta:
 		model = Tipo
 		exclude = ['']
+
+class DepartemanetoForm(forms.ModelForm):
+	class Meta:
+		model = Departamento
+		exclude = ['']

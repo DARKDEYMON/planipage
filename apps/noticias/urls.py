@@ -32,5 +32,9 @@ urlpatterns = [
 
     path('listtipo/', login_required(ListTiposView.as_view()), name='list_tipo'),
     path('createtipo/', login_required(CreateTipoView.as_view()), name='create_tipo'),
-    path('updatetipo/<int:pk>/', login_required(UpdateTipoView.as_view()), name='update_tipo')
+    path('updatetipo/<int:pk>/', login_required(UpdateTipoView.as_view()), name='update_tipo'),
+
+    path('listdepartemento/', login_required(ListDepartamentoView.as_view()), name='list_departamento'),
+    path('creardeparatmento/', login_required(CreateDepartamentoView.as_view()), name='create_departamento'),
+    path('updatedepartamento/<int:pk>/', login_required(UpdateDepartamentoView.as_view()), name='update_departamento'),
 ]

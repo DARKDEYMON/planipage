@@ -1,6 +1,6 @@
 {% extends "base/base_list.html" %}
 	{% block name %}
-		<h2 class="text-center">Lista de Tipos</h1>
+		<h2 class="text-center">Lista de Departamentos</h1>
 	{% endblock name %}
 
 	{% block bodylist %}
@@ -12,9 +12,7 @@
 			<thead>
 				<tr>
 					<th scope="col">#</th>
-					<th scope="col">Departamento</th>
-					<th scope="col">Prioridad</th>
-					<th scope="col">Tipo</th>
+					<th scope="col">Nombre</th>
 					<th scope="col">Opciones</th>
 				</tr>
 			</thead>
@@ -22,16 +20,14 @@
 				{% for object in object_list %}
 					<tr>
 						<th>{{ object.id }}</th>
-						<td>{{ object.departamento.nombre }}</td>
-						<td>{{ object.prioridad }}</td>
-						<td>{{ object.tipo }}</td>
+						<td>{{ object.nombre }}</td>
 						<td>
 							<div class="dropdown">
 								<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
 								Opciones
 								</button>
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-									<li><a class="dropdown-item" href="{% url 'noticias:update_tipo' object.id %}"> Actualizar</a></li>
+									<li><a class="dropdown-item" href="{% url 'noticias:update_departamento' object.id %}"> Actualizar</a></li>
 								</ul>
 							</div>
 						</td>	

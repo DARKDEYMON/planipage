@@ -16,14 +16,40 @@ class Pagina(models.Model):
 	def __str__(self):
 		return self.nombre
 
+class Departamento(models.Model):
+	nombre = models.CharField(
+		null=False,
+		blank=False,
+		max_length=200
+	)
+	prioridad = models.FloatField(
+		null=False,
+		blank=False,
+		default=1
+	)
+	class Meta:
+		ordering = ['prioridad','id']
+	def tipos_get(self):
+		return Tipo.objects.filter(departamento=self)
+	def __str__(self):
+		return self.nombre
+
 class Tipo(models.Model):
+	departamento = models.ForeignKey('noticias.Departamento', on_delete=models.CASCADE)
 	tipo = models.CharField(
 		null=False,
 		blank=False,
 		max_length=300
 	)
+	prioridad = models.FloatField(
+		null=False,
+		blank=False,
+		default=1
+	)
+	class Meta:
+		ordering = ['prioridad','id']
 	def __str__(self):
-		return self.tipo
+		return str(self.departamento)+ ' - ' +self.tipo
 
 class Publicacion(models.Model):
 	tipo = models.ManyToManyField('noticias.Tipo')

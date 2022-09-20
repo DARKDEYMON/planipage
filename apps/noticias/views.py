@@ -10,7 +10,7 @@ from .models import *
 # Create your views here.
 
 def Main(request):
-	publicaciones = Publicacion.objects.filter(publicar=True).prefetch_related('archivo_set')[:20]
+	publicaciones = Publicacion.objects.filter(publicar=True).prefetch_related('archivo_set','tipo','tipo__departamento')[:20]
 	return render(request,'main.html', {'publicaciones':publicaciones})
 
 def publicacion_view(request, pk):
@@ -94,3 +94,21 @@ class UpdateTipoView(UpdateView):
 	form_class = TipoForm
 	template_name = 'tipo/update_tipo.html'
 	success_url = reverse_lazy('noticias:list_tipo')
+
+#Departamento
+class ListDepartamentoView(ListSearchView):
+	model = Departamento
+	paginate_by = 10
+	template_name = 'departamento/list_departamento.html'
+	fields_search = ['id','tipò']
+
+class CreateDepartamentoView(CreateView):
+	form_class = DepartemanetoForm
+	template_name = 'departamento/create_departamento.html'
+	success_url = reverse_lazy('noticias:list_departamento')
+
+class UpdateDepartamentoView(UpdateView):
+	model = Departamento
+	form_class = DepartemanetoForm
+	template_name = 'departamento/update_departamento.html'
+	success_url = reverse_lazy('noticias:list_departamento')

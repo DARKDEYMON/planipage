@@ -33,7 +33,9 @@
 }
 .articulos{
 	min-width: 250px;
+	max-width: 250px;
 	min-height: 250px;
+	max-height: 250px;
 	transition-property: all;
 	transition-duration: 0.2s;
 	transition-timing-function: ease;
@@ -105,4 +107,17 @@
 .titulo-noticia{
 	font-family: "Times New Roman", Times, serif;
 	padding: 1rem;
+}
+
+.text-noticias{
+	font-size: medium;
+	text-overflow:  ellipsis;
+}
+.text-noticias-titulo{
+	font-size: initial;
+	line-clamp: 2;
+	text-overflow:  ellipsis;
+}
+.text-shadow{
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }

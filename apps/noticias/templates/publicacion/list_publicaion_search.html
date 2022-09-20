@@ -1,10 +1,10 @@
-{% extends "base/base_form.html" %}
+{% extends "base/base_list.html" %}
 {% load crispy_forms_tags %}
 	{% block name %}
-		<h2 class="text-center">Publicaciones</h2>
+		<h2 class="text-center">Resultados</h2>
 	{% endblock name %}
 
-	{% block bodyform %}
+	{% block bodylist %}
 		{% for p in object_list %}		
 			<div class="card" style="width: 100%;">
 				<img class="img-search" src="{{ p.archivo_set.all.0.archivo.url }}" class="card-img-top" alt="...">
@@ -25,4 +25,4 @@
 			</div>
 			<br>
 		{% endfor %}
-	{% endblock bodyform %}
+	{% endblock bodylist %}

@@ -1,6 +1,6 @@
 <nav id="marca" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="/">Planificación</a>
+		<a class="navbar-brand" href="/">DPU</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -20,12 +20,28 @@
 				</li>
 				
 			{% endif %}
+			{% if request.departamentos %}
+				{% for dep in request.departamentos %}
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						{{dep.nombre}}
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							{% for tip in dep.tipo_set.all %}
+								<li><a class="dropdown-item" target="_blank" href=""><i class="fas fa-user"></i> {{ tip.tipo }}</a></li>
+							{% endfor %}
+						</ul>
+					</li>
+				{% endfor %}
+			{% endif %}
 			{% if request.user.is_authenticated %}
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-					Noticias
+					Administración
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<li><a class="dropdown-item" href="{% url 'noticias:create_departamento' %}">Crear Departamento</a></li>
+						<li><a class="dropdown-item" href="{% url 'noticias:list_departamento' %}">Lista de Departamentos</a></li>
 						<li><a class="dropdown-item" href="{% url 'noticias:create_publicacion' %}"><i class="fas fa-user"></i> Crear Noticia</a></li>
 						<li><a class="dropdown-item" href="{% url 'noticias:list_publicacion' %}">Lista de Publicaciones</a></li>
 						<li><a class="dropdown-item" href="{% url 'noticias:create_pagina' %}">Crear Pagina</a></li>
