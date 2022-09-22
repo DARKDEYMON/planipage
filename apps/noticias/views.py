@@ -6,12 +6,17 @@ from django.urls import reverse_lazy
 from .generic import *
 from .forms import *
 from .models import *
+from constance import config
 
 # Create your views here.
 
 def Main(request):
 	publicaciones = Publicacion.objects.filter(publicar=True).prefetch_related('archivo_set','tipo','tipo__departamento')[:20]
 	return render(request,'main.html', {'publicaciones':publicaciones})
+
+def nosotros(request):
+	autoridades = Autoridades.objects.all()
+	return render(request, 'nosotros.html',{'autoridades':autoridades,'config':config})
 
 def publicacion_view(request, pk):
 	noticia = Publicacion.objects.prefetch_related('archivo_set').get(id=pk)
@@ -100,7 +105,7 @@ class ListDepartamentoView(ListSearchView):
 	model = Departamento
 	paginate_by = 10
 	template_name = 'departamento/list_departamento.html'
-	fields_search = ['id','tipò']
+	fields_search = ['id','tipo']
 
 class CreateDepartamentoView(CreateView):
 	form_class = DepartemanetoForm
@@ -112,3 +117,32 @@ class UpdateDepartamentoView(UpdateView):
 	form_class = DepartemanetoForm
 	template_name = 'departamento/update_departamento.html'
 	success_url = reverse_lazy('noticias:list_departamento')
+
+#lista filtrada
+class ListPublicacionFiltroBusquedaView(ListSearchView, ModelExtraView):
+	model_extra = Tipo
+	model = Publicacion
+	paginate_by = 10
+	template_name = 'publicacion/list_publicaion_filtro_search.html'
+	fields_search = ['id','nombre','tipo','publicar']
+	def get_queryset(self):
+		query = super().get_queryset().filter(tipo__id=self.kwargs['pk'])
+		return self.search_fields(query)
+
+#Autoridades
+class ListAutoridadesView(ListSearchView):
+	model = Autoridades
+	paginate_by = 10
+	template_name = 'autoridades/list_autoridades.html'
+	fields_search = ['id','nombre']
+
+class CreateAutoridadesView(CreateView):
+	form_class = AutoridadesForm
+	template_name = 'autoridades/create_autoridades.html'
+	success_url = reverse_lazy('noticias:list_autoridades')
+
+class UpdateAutoridadesView(UpdateView):
+	model = Autoridades
+	form_class = AutoridadesForm
+	template_name = 'autoridades/update_autoridades.html'
+	success_url = reverse_lazy('noticias:list_autoridades')

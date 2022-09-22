@@ -41,3 +41,8 @@ class DepartemanetoForm(forms.ModelForm):
 	class Meta:
 		model = Departamento
 		exclude = ['']
+
+class AutoridadesForm(forms.ModelForm):
+	class Meta:
+		model = Autoridades
+		exclude = ['']

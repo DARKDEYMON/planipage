@@ -19,6 +19,8 @@ from .views import *
 
 urlpatterns = [
     path('', Main, name='main'),
+    path('nosostros/', nosotros, name='nosotros'),
+
     path('publicacion/<int:pk>/', publicacion_view, name='publicacion'),
     path('createpublicaion/', login_required(CreatePublicacionView.as_view()), name='create_publicacion'),
     path('updatepublicaion/<int:pk>/', login_required(UpdatePublicaionView.as_view()), name='update_publicaion'),
@@ -37,4 +39,10 @@ urlpatterns = [
     path('listdepartemento/', login_required(ListDepartamentoView.as_view()), name='list_departamento'),
     path('creardeparatmento/', login_required(CreateDepartamentoView.as_view()), name='create_departamento'),
     path('updatedepartamento/<int:pk>/', login_required(UpdateDepartamentoView.as_view()), name='update_departamento'),
+
+    path('listautoridades/', login_required(ListAutoridadesView.as_view()), name='list_autoridades'),
+    path('createautoridades/', login_required(CreateAutoridadesView.as_view()), name='create_autoridaes'),
+    path('updateautoridaes/<int:pk>/', login_required(UpdateAutoridadesView.as_view()), name='update_autoridades'),
+
+    path('listfiltropublicacion/<int:pk>/', login_required(ListPublicacionFiltroBusquedaView.as_view()), name='list_filtro_publicacion')
 ]

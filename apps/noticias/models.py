@@ -3,6 +3,25 @@ from django.db.models import Q
 
 # Create your models here.
 
+class Autoridades(models.Model):
+	nombre = models.CharField(
+		max_length=500,
+		null=False,
+		blank=False
+	)
+	cargo = models.CharField(
+		max_length=500
+	)
+	prioridad = models.FloatField(
+		null=False,
+		blank=False,
+		default=1
+	)
+	class Meta:
+		ordering = ['prioridad','id']
+	def __str__(self):
+		return self.nombre
+
 class Pagina(models.Model):
 	nombre = models.CharField(
 		null=False,

@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'crispy_bootstrap5',
+    'constance',
+    'constance.backends.database',
     'apps.users',
     'apps.noticias'
 ]
@@ -145,3 +147,11 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = reverse_lazy('users:login')
 LOGOUT_URL = reverse_lazy('users:logout')
 LOGOUT_REDIRECT_URL = '/'
+
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+CONSTANCE_CONFIG = {
+    'TELEFONOS': ('', 'Números de teléfono', str),
+    'CORREOS_ELECTRONICOS': ('', 'Correo Electrónico', str),
+    'FAX': ('', 'Nuemros de Fax', str),
+    'DIRECCION': ('', 'Dirección', str)
+}

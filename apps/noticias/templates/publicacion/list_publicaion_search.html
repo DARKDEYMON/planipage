@@ -24,5 +24,10 @@
 				</div>
 			</div>
 			<br>
+		{% empty %}
+			<div class="card" style="width: 100%;">
+				<h3 class="text-center">Aun no existen publicaciones</h3>
+			</div>
+			
 		{% endfor %}
 	{% endblock bodylist %}

@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, FormView
 from django.http import HttpResponseRedirect
 from django.contrib.postgres.search import TrigramSimilarity
 from django.db.models import CharField
@@ -43,3 +43,11 @@ class ListSearchView(ListView):
 	def get_queryset(self):
 		query = super().get_queryset()
 		return self.search_fields(query)
+
+class ModelExtraView(FormView):
+	#model_extra
+	def get_context_data(self, *args , **kwargs):
+		context = super().get_context_data(*args, **kwargs)
+		if 'object_extra' not in context and hasattr(self, 'model_extra'):
+			context['object_extra'] = self.model_extra.objects.get(id=self.kwargs['pk'])
+		return context
