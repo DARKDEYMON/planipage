@@ -48,7 +48,7 @@ def archivo_inline_view(request, pk):
 	fom_inline = archivos_inline_form
 	helper = ArchivoHelperForm()
 	if request.method == 'POST':
-		formset = fom_inline(request.POST, instance=instance)
+		formset = fom_inline(request.POST, request.FILES, instance=instance)
 		if formset.is_valid():
 			formset.save()
 			if 'add' in request.POST:
