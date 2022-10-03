@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 from django.urls import reverse_lazy
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-hg!7smth#9q%7j8l5jxy7%5-spu&r%y@@=q^f8^1t1*%-px84g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG',cast=bool)
 
 ALLOWED_HOSTS = ['*']
 
@@ -84,11 +85,11 @@ WSGI_APPLICATION = 'planipage.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'planipage',
-        'USER': 'postgres',
-        'PASSWORD': '123456789',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': config('DB_NAME',cast=str),
+        'USER': config('DB_USER',cast=str),
+        'PASSWORD': config('DB_PASSWORD',cast=str),
+        'HOST': config('DB_HOST',cast=str),
+        'PORT': config('DB_PORT',cast=str),
     }
 }
 
