@@ -44,5 +44,5 @@ urlpatterns = [
     path('createautoridades/', login_required(CreateAutoridadesView.as_view()), name='create_autoridaes'),
     path('updateautoridaes/<int:pk>/', login_required(UpdateAutoridadesView.as_view()), name='update_autoridades'),
 
-    path('listfiltropublicacion/<int:pk>/', login_required(ListPublicacionFiltroBusquedaView.as_view()), name='list_filtro_publicacion')
+    path('listfiltropublicacion/<int:pk>/', ListPublicacionFiltroBusquedaView.as_view(), name='list_filtro_publicacion')
 ]
