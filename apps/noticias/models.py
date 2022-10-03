@@ -111,9 +111,14 @@ class Publicacion(models.Model):
 class Archivo(models.Model):
 	publicacion = models.ForeignKey('noticias.Publicacion', on_delete=models.CASCADE)
 	archivo = models.FileField(
-		upload_to='archivos/%Y-%m-%d-%H/',
+		upload_to='archivos/%Y-%m-%d-%H-%i-%s-%u/',
 		null=False,
 		blank=False
+	)
+	prioridad = models.FloatField(
+		null=False,
+		blank=False,
+		default=1
 	)
 	def __str__(self):
 		return str(self.publicacion)

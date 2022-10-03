@@ -12,19 +12,6 @@ class PublicacionForm(forms.ModelForm):
 		model = Publicacion
 		fields = '__all__'
 
-class ArchivoHelperForm(FormHelper):
-	def __init__(self, *args, **kwargs):
-		super().__init__(*args, **kwargs)
-		self.form_method = 'post'
-		self.layout = Layout(
-			Row(
-				Column('archivo'),
-				Column('DELETE', css_class="d-flex align-items-center pt-4 col-1")
-			)
-		)
-		self.render_required_fields = True
-		self.form_tag = False
-
 archivos_inline_form = inlineformset_factory(Publicacion, Archivo, exclude=[''], extra=1, can_delete=True)
 
 class PaginaForm(forms.ModelForm):
@@ -46,3 +33,17 @@ class AutoridadesForm(forms.ModelForm):
 	class Meta:
 		model = Autoridades
 		exclude = ['']
+
+class ArchivosHelperForm(FormHelper):
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.form_method = 'post'
+		self.layout = Layout(
+			Row(
+				Column('archivo'),
+				Column('prioridad'),
+				css_class='g-1'
+			)
+		)
+		self.render_required_fields = True
+		self.form_tag = False

@@ -46,7 +46,7 @@ class ListPublicacionView(ListSearchView):
 def archivo_inline_view(request, pk):
 	instance = get_object_or_404(Publicacion, id=pk)
 	fom_inline = archivos_inline_form
-	helper = ArchivoHelperForm()
+	helper = ArchivosHelperForm()
 	if request.method == 'POST':
 		formset = fom_inline(request.POST, request.FILES, instance=instance)
 		if formset.is_valid():
