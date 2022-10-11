@@ -68,7 +68,7 @@ class Tipo(models.Model):
 	class Meta:
 		ordering = ['prioridad','id']
 	def __str__(self):
-		return str(self.departamento)+ ' - ' +self.tipo
+		return str(self.departamento) + ' - ' + self.tipo
 
 class Publicacion(models.Model):
 	tipo = models.ManyToManyField('noticias.Tipo')

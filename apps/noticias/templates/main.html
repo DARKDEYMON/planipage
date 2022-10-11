@@ -43,7 +43,7 @@
 								<a class="text-noticias-titulo" href="{% url 'noticias:publicacion' p.pk %}">{{ p.nombre }}</a>
 								<div>
 									{% for tipo in p.tipo.all %}
-										<span class="badge bg-primary" style="font-size: 0.5rem;">{{ tipo.tipo }}</span>
+										<span class="badge bg-primary" style="font-size: 0.5rem;">{{ tipo }}</span>
 									{% endfor %}
 								</div>
 							</h3>
