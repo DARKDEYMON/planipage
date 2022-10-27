@@ -1,6 +1,9 @@
+{% load static %}
 <nav id="marca" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="/">DPU</a>
+		<a class="navbar-brand" href="/">
+			<img src="{% static "logo.svg" %}" alt="Bootstrap" height="24">
+		</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -14,7 +17,7 @@
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							{% for p in request.paginas %}
-								<li><a class="dropdown-item" target="_blank" href="{{p.url}}"><i class="fas fa-user"></i> {{ p.nombre }}</a></li>
+								<li><a class="dropdown-item" target="_blank" href="{{p.url}}"><i class="fas fa-link"></i> {{ p.nombre }}</a></li>
 							{% endfor %}
 						</ul>
 					</li>
@@ -28,7 +31,7 @@
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 								{% for tip in dep.tipo_set.all %}
-									<li><a class="dropdown-item" href="{% url 'noticias:list_filtro_publicacion' tip.id %}"><i class="fas fa-user"></i> {{ tip.tipo }}</a></li>
+									<li><a class="dropdown-item" href="{% url 'noticias:list_filtro_publicacion' tip.id %}"><i class="fas fa-list"></i> {{ tip.tipo }}</a></li>
 								{% endfor %}
 							</ul>
 						</li>
