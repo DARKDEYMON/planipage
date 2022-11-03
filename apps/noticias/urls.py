@@ -19,7 +19,8 @@ from .views import *
 
 urlpatterns = [
     path('', Main, name='main'),
-    path('nosostros/', nosotros, name='nosotros'),
+    path('nosotros/', nosotros, name='nosotros'),
+    path('constance/', login_required(CosntanceView.as_view()), name='constance'),
 
     path('publicacion/<int:pk>/', publicacion_view, name='publicacion'),
     path('createpublicaion/', login_required(CreatePublicacionView.as_view()), name='create_publicacion'),

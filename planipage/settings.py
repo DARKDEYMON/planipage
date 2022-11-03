@@ -153,6 +153,7 @@ CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 CONSTANCE_CONFIG = {
     'TELEFONOS': ('', 'Números de teléfono', str),
     'CORREOS_ELECTRONICOS': ('', 'Correo Electrónico', str),
-    'FAX': ('', 'Nuemros de Fax', str),
+    'FAX': ('', 'Numeros de Fax', str),
     'DIRECCION': ('', 'Dirección', str)
 }
+CONSTANCE_SUPERUSER_ONLY = False

@@ -146,3 +146,12 @@ class UpdateAutoridadesView(UpdateView):
 	form_class = AutoridadesForm
 	template_name = 'autoridades/update_autoridades.html'
 	success_url = reverse_lazy('noticias:list_autoridades')
+
+class CosntanceView(FormView):
+	form_class = ConstanceForm
+	template_name = 'constance.html'
+	success_url = '/'
+	def form_valid(self, form):
+		if form.is_valid():
+			form.save()
+		return super().form_valid(form)
