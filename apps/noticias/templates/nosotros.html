@@ -4,7 +4,12 @@
 		<div class="p-5 mb-4 bg-light rounded-3">
 			<div class="container-fluid py-5">
 				<h1 class=" fw-bold">Dirección de PLanificacion Universitaria - UATF</h1>
-				<img src="{% static "plani.png" %}" alt="" style="width:70%;">
+				<!--<img src="{% static "plani.png" %}" alt="" style="width:70%;">-->
+				{% if config.EXTRAS != '' %}
+					<div>
+						{{ config.EXTRAS|safe }}
+					</div>
+				{% endif %}
 			</div>
 		</div>
 		{% if autoridades %}
@@ -28,10 +33,10 @@
 			<div class="row row-cols-12">
 				<div class=" col card">
 					<div class="card-body">
-						<div class="text-center"><strong class="card-title "><i class="fa-solid fa-phone"></i> Telefono(s):</strong> {{ config.TELEFONOS }}</div>
-						<div class="text-center"><strong class="card-title "><i class="fa-solid fa-envelope"></i> Correo Electronico(s):</strong> {{ config.CORREOS_ELECTRONICOS }}</div>
-						<div class="text-center"><strong class="card-title "><i class="fa-solid fa-fax"></i> FAX(s):</strong> {{ config.FAX }}</div>
-						<div class="text-center"><strong class="card-title "><i class="fa-solid fa-house"></i> Direccion(es):</strong> {{ config.DIRECCION }}</div>
+						<div class="text-center"><strong class="card-title "><i class="fa-solid fa-phone"></i> Telefono(s):</strong> {{ config.TELEFONOS|safe }}</div>
+						<div class="text-center"><strong class="card-title "><i class="fa-solid fa-envelope"></i> Correo Electronico(s):</strong> {{ config.CORREOS_ELECTRONICOS|safe }}</div>
+						<div class="text-center"><strong class="card-title "><i class="fa-solid fa-fax"></i> FAX(s):</strong> {{ config.FAX|safe }}</div>
+						<div class="text-center"><strong class="card-title "><i class="fa-solid fa-house"></i> Direccion(es):</strong> {{ config.DIRECCION|safe }}</div>
 					</div>
 				</div>
 			</div>

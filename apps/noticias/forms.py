@@ -57,7 +57,7 @@ class ConstanceForm(forms.Form):
 			data = self.Meta.constance_values[key]
 			typo = self.getDataOrNone(data,2)
 			if not typo or typo==str:
-				self.fields[key] = forms.CharField(label=data[1], required=True, initial=getattr(self.Meta.constance,key))
+				self.fields[key] = forms.CharField(widget=forms.Textarea(),label=data[1], required=False, initial=getattr(self.Meta.constance,key))
 			elif(typo==bool):
 				self.fields[key] = forms.BooleanField(label=data[1], required=True, initial=getattr(self.Meta.constance,key))
 			elif(typo==int):

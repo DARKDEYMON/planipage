@@ -154,6 +154,7 @@ CONSTANCE_CONFIG = {
     'TELEFONOS': ('', 'Números de teléfono', str),
     'CORREOS_ELECTRONICOS': ('', 'Correo Electrónico', str),
     'FAX': ('', 'Numeros de Fax', str),
-    'DIRECCION': ('', 'Dirección', str)
+    'DIRECCION': ('', 'Dirección', str),
+    'EXTRAS': ('','Extras',str)
 }
 CONSTANCE_SUPERUSER_ONLY = False
