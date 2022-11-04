@@ -2,7 +2,7 @@
 	{% block body %}
 		<div class="container">
 			<div class="container bg-light rounded-3">
-				<div class="row">
+				<div class="row m-4">
 					<h1 class="titulo-noticia text-center">{{ noticia.nombre }}</h1>
 					{% if noticia.resumen %}
 						<h3><blockquote class="resaltado">{{ noticia.resumen }}</blockquote></h3>
@@ -30,16 +30,16 @@
 				</div>
 			</div>
 			<br>
-			<div class="container bg-light rounded-3">
+			<div class="container bg-light rounded-3 m-1">
 				{% if noticia.archivos %}
-					<div class="row" style="padding:10px;">
+					<div class="row m-4 p-3" style="padding:10px;">
 						<h4><blockquote class="resaltado">Archivos</blockquote></h4>
 						{% for a in noticia.archivos %}
 							<a href="{{ a.archivo.url }}">{{ a.archivo.name }}</a>
 						{% endfor %}
 					</div>
 				{% endif %}
-				<div class="row">
+				<div class="row m-4 p-3">
 					<p>{{noticia.contenido|safe}}</p>
 				</div>
 			</div>
