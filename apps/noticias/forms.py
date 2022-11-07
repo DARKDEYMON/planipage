@@ -13,6 +13,9 @@ class PublicacionForm(forms.ModelForm):
 	class Meta:
 		model = Publicacion
 		fields = '__all__'
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.fields['contenido'].required = False
 
 archivos_inline_form = inlineformset_factory(Publicacion, Archivo, exclude=[''], extra=1, can_delete=True)
 
