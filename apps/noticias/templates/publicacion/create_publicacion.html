@@ -16,3 +16,13 @@
 		</form>
 		
 	{% endblock bodyform %}
+
+	{% block scripts %}
+		<script>
+		tinymce.init({
+			selector: 'textarea',
+			plugins: 'advlist link image lists',
+			language: 'es'
+		});
+		</script>
+	{% endblock scripts %}
