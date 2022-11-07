@@ -102,9 +102,9 @@ class Publicacion(models.Model):
 		auto_now=True,
 	)
 	def solo_fotos(self):
-		return Archivo.objects.filter(Q(archivo__icontains='.jpg')|Q(archivo__icontains='.png'), publicacion=self)
+		return Archivo.objects.filter(Q(archivo__icontains='.jpeg')|Q(archivo__icontains='.jpg')|Q(archivo__icontains='.png'), publicacion=self)
 	def archivos(self):
-		return Archivo.objects.filter(~(Q(archivo__icontains='.jpg')|Q(archivo__icontains='.png')),  publicacion=self)
+		return Archivo.objects.filter(~(Q(archivo__icontains='.jpeg')|Q(archivo__icontains='.jpg')|Q(archivo__icontains='.png')),  publicacion=self)
 	def __str__(self):
 		return self.nombre
 
