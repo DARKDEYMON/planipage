@@ -11,7 +11,7 @@ from constance import config
 # Create your views here.
 
 def Main(request):
-	publicaciones = Publicacion.objects.filter(publicar=True).prefetch_related('archivo_set','tipo','tipo__departamento')[:20]
+	publicaciones = Publicacion.objects.filter(publicar=True).prefetch_related('archivo_set','tipo','tipo__departamento').order_by('-id')[:20]
 	return render(request,'main.html', {'publicaciones':publicaciones})
 
 def nosotros(request):
