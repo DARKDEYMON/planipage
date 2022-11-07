@@ -36,7 +36,7 @@
 			</div>
 			<div class="row gx-0">
 				<div class="cajon">
-					{% for p in publicaciones %}
+					{% for p in publicaciones|slice:":15" %}
 						<div class="articulos arti-estilo not-cart mini-art">
 							<h3>
 								<time>{{ p.creado }}</time>
