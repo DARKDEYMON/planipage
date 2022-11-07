@@ -12,7 +12,7 @@
 					<div class="carousel-inner">
 						{% for p in publicaciones|slice:":3" %}
 							<div class="carousel-item {% if forloop.first %}active{% endif %}">
-								<img src="{{p.archivo_set.all.0.archivo.url}}" class="d-block d-img" alt="...">
+								<img src="{{p.solo_fotos.0.archivo.url}}" class="d-block d-img" alt="...">
 								<div class="carousel-caption d-md-block">
 									<h4 class="link">
 										<a class="text-shadow" href="{% url 'noticias:publicacion' p.pk %}">{{ p.nombre }}</a>
