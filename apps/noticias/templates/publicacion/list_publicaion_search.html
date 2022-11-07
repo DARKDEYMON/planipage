@@ -7,7 +7,7 @@
 	{% block bodylist %}
 		{% for p in object_list %}		
 			<div class="card" style="width: 100%;">
-				<img class="img-search" src="{{ p.archivo_set.all.0.archivo.url }}" class="card-img-top" alt="...">
+				<img class="img-search" src="{{ p.solo_fotos.0.archivo.url }}" class="card-img-top" alt="...">
 				<div class="card-body">
 					<h5 class="card-title">{{ p.nombre }}</h5>
 					<p class="card-text">{{ p.resumen }}</p>
