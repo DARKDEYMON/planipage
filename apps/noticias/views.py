@@ -126,7 +126,7 @@ class ListPublicacionFiltroBusquedaView(ListSearchView, ModelExtraView):
 	template_name = 'publicacion/list_publicaion_filtro_search.html'
 	fields_search = ['id','nombre','tipo','publicar']
 	def get_queryset(self):
-		query = super().get_queryset().filter(tipo__id=self.kwargs['pk'])
+		query = super().get_queryset().filter(publicar=True, tipo__id=self.kwargs['pk'])
 		return self.search_fields(query)
 
 #Autoridades
