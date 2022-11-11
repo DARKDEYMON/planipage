@@ -35,7 +35,7 @@
 					<div class="row m-4 p-3" style="padding:10px;">
 						<h4><blockquote class="resaltado">Archivos</blockquote></h4>
 						{% for a in noticia.archivos %}
-							<a href="{{ a.archivo.url }}">{{ a.archivo.name }}</a>
+							<a target="_blank" href="{{ a.archivo.url }}">{{ a.archivo.name }}</a>
 						{% endfor %}
 					</div>
 				{% endif %}
