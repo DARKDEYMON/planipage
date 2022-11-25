@@ -29,7 +29,7 @@ DEBUG = config('DEBUG',cast=bool)
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['https://planificacion.uatf.edu.bo/']
+CSRF_TRUSTED_ORIGINS = ['https://planificacion.uatf.edu.bo']
 
 # Application definition
 
