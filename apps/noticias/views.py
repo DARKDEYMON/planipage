@@ -63,10 +63,9 @@ class ListPublicacionBusquedaView(ListSearchView):
 	model = Publicacion
 	paginate_by = 10
 	template_name = 'publicacion/list_publicaion_search.html'
-	fields_search = ['nombre','tipo__tipo']
+	fields_search = ['nombre']
 	def get_queryset(self):
-		query = super().get_queryset().filter(publicar=True)
-		return self.search_fields(query)
+		return super().get_queryset().filter(publicar=True).distinct()
 
 class ListPaginasView(ListSearchView):
 	model = Pagina

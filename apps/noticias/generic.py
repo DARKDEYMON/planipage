@@ -1,6 +1,8 @@
 from django.views.generic import ListView, FormView
 from django.http import HttpResponseRedirect
 from django.contrib.postgres.search import TrigramSimilarity
+from django.db.models.functions import Coalesce
+from django.db.models import Value
 from django.db.models import CharField
 from django.db.models.functions import Cast
 from .forms import *
@@ -8,7 +10,7 @@ from .forms import *
 class ListSearchView(ListView):
 	form_class = SearchForm
 	fields_search = []
-	ordering = '-id'
+	#ordering = '-id'
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
 		if 'form' not in context:
@@ -22,8 +24,11 @@ class ListSearchView(ListView):
 			form = self.form_class(self.request.GET)
 			if form.is_valid():
 				self.search = form.cleaned_data['search']
-				if self.search=='':
-					return HttpResponseRedirect(self.request.path)
+				#if self.search=='':
+				#	return HttpResponseRedirect(self.request.path)
+		redirect = self.get_page_object_is_on()
+		if(redirect):
+			return redirect
 		return super().get(*args, **kwargs)
 	def search_fields(self, query):
 		search = self.search
@@ -34,7 +39,7 @@ class ListSearchView(ListView):
 				if trigram==None:
 					trigram = TrigramSimilarity(Cast(field, CharField()),search)
 				else:
-					trigram = trigram + TrigramSimilarity(Cast(field, CharField()),search)
+					trigram = trigram + TrigramSimilarity(Coalesce(Cast(field, CharField()),Value('')),search)
 			return query.annotate(
 				similarity = trigram
 			).order_by('-similarity')
@@ -43,6 +48,20 @@ class ListSearchView(ListView):
 	def get_queryset(self):
 		query = super().get_queryset()
 		return self.search_fields(query)
+	def get_page_object_is_on(self):
+		if self.request.method == 'GET':
+			if('idpage' in self.request.GET and hasattr(self, 'paginate_by')):
+				idpage = int(self.request.GET['idpage'])
+				idoriginalobj = int(self.request.GET['idoriginalobj'] if self.request.GET.get('idoriginalobj','')!='' else idpage)
+				redirectlistnameid = self.request.GET.get('redirectlistnameid','')
+				query = self.get_queryset().values_list('id', flat=True)
+				model_ids = list(query)
+				page = model_ids.index(idpage) // self.get_paginate_by(self.get_queryset()) + 1
+				return HttpResponseRedirect(self.request.path + '?page=' + str(page) + '#' + redirectlistnameid + str(idoriginalobj))
+			else:
+				return None
+		else:
+			return None
 
 class ModelExtraView(FormView):
 	#model_extra
