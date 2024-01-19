@@ -46,6 +46,11 @@ class Departamento(models.Model):
 		blank=False,
 		default=1
 	)
+	destacar = models.BooleanField(
+		null=False,
+		blank=False,
+		default=False
+	)
 	class Meta:
 		ordering = ['prioridad','id']
 	def tipos_get(self):

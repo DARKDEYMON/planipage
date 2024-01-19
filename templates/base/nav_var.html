@@ -30,7 +30,11 @@
 					{% for dep in request.departamentos %}
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							{{dep.nombre}}
+							{% if dep.destacar %}
+								<span class="parpadea"><strong>{{dep.nombre}}</strong>
+							{% else %}
+								{{dep.nombre}}
+							{% endif %}
 							</a>
 							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 								{% for tip in dep.tipo_set.all %}
