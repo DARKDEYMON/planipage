@@ -3,13 +3,13 @@
 		<div class="container">
 			<div class="container bg-light rounded-3">
 				<div class="row m-4">
-					<h1 class="titulo-noticia text-center">{{ noticia.nombre }}</h1>
+					<h3 class="titulo-noticia text-center">{{ noticia.nombre }}</h3>
 					{% if noticia.resumen %}
-						<h3><blockquote class="resaltado">{{ noticia.resumen }}</blockquote></h3>
+						<h6><blockquote class="resaltado">{{ noticia.resumen }}</blockquote></h6>
 					{% endif %}
 				</div>
 			</div>
-			<br>
+			
 			<div class="row">
 				<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
 					<div class="carousel-inner">
@@ -29,17 +29,19 @@
 					</button>
 				</div>
 			</div>
-			<br>
+			
 			<div class="container bg-light rounded-3 m-1">
 				{% if noticia.archivos %}
-					<div class="row m-4 p-3" style="padding:10px;">
-						<h4><blockquote class="resaltado">Archivos</blockquote></h4>
-						{% for a in noticia.archivos %}
-							<a target="_blank" href="{{ a.archivo.url }}">{{ a.archivo.name }}</a>
-						{% endfor %}
+					<div class="row mx-4 mt-4 p-4">
+						<div class="alert alert-info " role="alert">
+							<h4><blockquote class="resaltado">Archivos</blockquote></h4>
+							{% for a in noticia.archivos %}
+								<a class="parpadea-medio" target="_blank" href="{{ a.archivo.url }}">{{ a.archivo.name }}</a>
+							{% endfor %}
+						</div>
 					</div>
 				{% endif %}
-				<div class="row m-4 p-3">
+				<div class="row mx-4 px-3">
 					<p>{{noticia.contenido|safe}}</p>
 				</div>
 			</div>
