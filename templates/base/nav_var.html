@@ -80,7 +80,12 @@
 						<i class="fas fa-cog"></i> Opciones
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="{% url 'users:logout' %}"><i class="fas fa-sign-out-alt"></i> Salir</a></li>
+							<li>
+								<form action="{% url 'users:logout' %}" method="post">
+									{% csrf_token %}
+									<a class="dropdown-item" onclick="this.closest('form').submit();return false;"><i class="fa-solid fa-right-from-bracket"></i> Salir</a>
+								</form>
+							</li>
 						</ul>
 					</li>
 				</ul>
