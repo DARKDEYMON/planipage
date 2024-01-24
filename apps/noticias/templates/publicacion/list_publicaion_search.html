@@ -10,16 +10,17 @@
 				{% for p in object_list %}
 					<div class=" col-sm-12 col-xl-4">
 						<div class="card" style="height: 100%;">
-							<img class="img-search" src="{{ p.solo_fotos.0.archivo.url }}" class="card-img-top" alt="...">
+							<img class="img-search auto-img" src="{{ p.solo_fotos.0.archivo.url }}" class="card-img-top" alt="...">
 							<div class="card-body">
 								<h6 class="card-title">{{ p.nombre }}</h6>
 								<p class="card-text">{{ p.resumen }}</p>
 
 								<div>
+									
 									<p>
 									<b>Tipo:</b>
 									{% for tipo in p.tipo.all %}
-										<span class="badge bg-primary">{{ tipo.tipo }}</span>
+										<span class="badge bg-primary" style="font-size:0.6rem">{{ tipo.tipo }}</span>
 									{% endfor %}
 									</p>
 								</div>
